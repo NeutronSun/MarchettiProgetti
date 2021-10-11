@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass{report}
 
 \usepackage[english]{babel}
 
@@ -13,6 +13,12 @@
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{imakeidx}
 \usepackage{pgfplots}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\bookmarksetup{
+  numbered,
+  open
+}
 \pgfplotsset{width=10cm,compat=1.9}
 \newcommand{\quantities}[1]{%
   \begin{tabular}{@{}c@{}}\strut#1\strut\end{tabular}%
@@ -21,13 +27,17 @@
 
 \title{Progetto e PMBOK}
 \author{Lorenzo Sanseverino 5DSA}
+\renewcommand*{\thesection}{\arabic{section}}
+
 
 \begin{document}
+\tableofcontents
 \maketitle
 
 
 
-\tableofcontents
+
+\chapter{Introduzione Al Project Management}
 \section{Definizione Di Progetto}
 
 In ambito lavorativo ed aziendale un progetto è uno sforzo \textcolor{red}{temporaneo} intrapreso con lo scopo di crearea un \textcolor{red}{prodotto/servizio} unico e di qualità. \index{section}
@@ -137,8 +147,7 @@ Una figura in comune per il Project Management è sicuramente quella del \textbf
 È la figura più importante, definito anche regista del progetto, lui non si preoccupa delle competenze tecniche ma di supervisione e coordinare tutti i membri del gruppo.
 Si occupa di individuare la struttura di un progetto e di avviarla rispettando i vincoli (vedi Fig \ref{t}), deve organizzare un sistema di monitoraggio, una documentazione e cosa più importante prendere decisione sul \textbf{Make Or Buy}.
 
-
-\section{Fasi di un Progetto}
+\chapter{Fasi Di un Progetto}
 Un progetto nasce da una idea/opportunità per arrivare ad un risultato, ponendosi degli obiettivi.
 Ogni obiettivo è raggiungibile mediante sforzi coordinati da parte del gruppo di lavoro seguendo delle fasi.
 Generalmente le fasi si dividono in 4:
