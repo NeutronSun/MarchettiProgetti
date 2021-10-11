@@ -12,6 +12,11 @@
 \newcommand{\diff}{\mathop{}\!\mathrm{d}}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{imakeidx}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\newcommand{\quantities}[1]{%
+  \begin{tabular}{@{}c@{}}\strut#1\strut\end{tabular}%
+}
 \makeindex[columns=3, title=Alphabetical Index, intoc]
 
 \title{Progetto e PMBOK}
@@ -145,6 +150,45 @@ Generalmente le fasi si dividono in 4:
 \item Chiusura	
 \end{enumerate}
 
+Ciò avviene per ottimizzare al massimo la produttività ed limitare al massimo gli sprechi.
+Vi sono nelle varie fasi(sopratutto nella prima) un ampio studio di tutti i vincoli e delle opportunità.
+Il vincolo consiste in qualcosa che rende difficile la realizzazione del progetto.
+Una oppurtunità è soluzione non prevista nel progetto che integrata possa aumentare la qualità dell'ultimo.
+Volendo le varie fasi possono essere viste sottoforma di grafico cartesiano:
+sulla ascissa troviamo il tempo t(mesi/anni, dipende dalla scadenza) e sulle ordinate il costo c(rappresentabile come un ritardo ed uno spreco di soldi).
+Il grafico risultate è il seguente
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = left,
+    xlabel = \(t\),
+    ylabel = {\(c(t)\)},
+    xmin=0, xmax=12,
+    ymin=0, ymax=100000,
+]
+%Below the red parabola is defined
+\addplot [
+    color=red,
+]
+coordinates {
+    (0,0)(2,0)(4,500)(6,1000)(8,3000)(10,10000)(12,100000)
+    };
+\addlegendentry{Bad Year}
+\\
+\addplot [
+    color=blue,
+]
+coordinates {
+    (0,0)(2,0)(4,500)(6,1000)(8,1500)(10,1700)(12,4000)
+    };
+\addlegendentry{Good Year}
+
+\end{axis}
+\end{tikzpicture}
+
+Come si può vedere la grafico, la linea rossa ha avuto grossi ritardi con un enorme spreco in termini di soldi: ciò è dovuto ad una brutta organizzazione iniziale.
+Invece la linea blu è una sorta di condizione ideale nel caso in cui tutto fosse perfetto(avere dei ritardi e delle perdite durante la realizzazione del progetto è quasi normale, se ovviamente non eccessive)
+
 \section{Concezione, analisi della fattibilità del progetto e tecniche di analisi}
 La concezione di un progetto è la nascita dell'idea e la comprensione della sua fattibilità.
 La concezione può essere divisa in sottoparti:
@@ -196,4 +240,30 @@ Essa si dividi in
     \item \textbf{Scelta delle modalità di realizzazione del progetto:} MakeOrBuy, riuso dei componenti esistenti, manutenzioni del sistema,formazione ed assistenza utente.
 \end{itemize}
 
+
+\subsection{Analisi dei rischi}
+In questa fase le attività del Project Manager sono due:
+\begin{enumerate}
+
+	\item \textbf{Individuare Fattori di Rischio}: Individuare delle 						aree in cui è possibile che arrivino dei rischi(punti deboli dell'azienda)
+	\item \textbf{La Definizione}: Fornire una documentazione dei vari fattori di rischi, fornirne un livello quantitativo ed il motivo, come rappresentato nella tabella sottostante:
+				\begin{center}
+				\begin{tabular}{ |c|c|c| } 
+ 				\hline
+ 				Fattori di rischio & Parametri & Livello \\ [0.5ex] 
+ 				\hline\hline
+ 				Complessità gestionale & 
+ 				Organizzazion personale & 
+ 				\quantities{Ampia azienda\\Alto Rischio} \\
+ 				
+ 				\hline
+ 				Innovazione Tecnologica & 
+ 				\quantities{Utilizzo nuovo hardware,\\aggionrare apparecchiature} & 
+ 				\quantities{Apparecchiature recenti,\\personale esperto\\Basso rischio} \\
+ 				\hline
+ 				
+\end{tabular}
+\end{center}
+				
+\end{enumerate}
 \end{document}
