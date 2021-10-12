@@ -15,6 +15,9 @@
 \usepackage{pgfplots}
 \usepackage{hyperref}
 \usepackage{bookmark}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{lscape}
 \bookmarksetup{
   numbered,
   open
@@ -23,6 +26,7 @@
 \newcommand{\quantities}[1]{%
   \begin{tabular}{@{}c@{}}\strut#1\strut\end{tabular}%
 }
+
 \makeindex[columns=3, title=Alphabetical Index, intoc]
 
 \title{Progetto e PMBOK}
@@ -306,13 +310,10 @@ In questa fase le attività del Project Manager sono due:
 \label{trischi}
 \end{table}
 
-Una volta stipulata la tabella di rischio si passa alla stesura della matrice di probabilità di impatto.
+Una volta stipulata la tabella di rischio si passa alla stesura della matrice di probabilità di impatto.\\
+Date come variabili: \(F_r = probability'\) e \(x_0 = impact\) l'indice di probabilità \(F_r\) rappresenta la probabilità di accadimento di un evento suddiviso in:
 \begin{quote}
-Date come variabili: \[F_r = probabilita'\]\[x_0 = impatto\] 
-\end{quote}
-
-Il nostro indice di probabilità \(F_r\) rappresenta la probabilità di avvenimento di un evento suddiviso in:
-\begin{quote}
+\(P = indexProbability\) in percentuale.\\
 Bassa: \begin{math}P < 20\% \Longrightarrow F_r = 1\end{math}.\\
 Media: \begin{math} 20 \leq P \leq 50\% \Longrightarrow F_r = 2\end{math}.\\
 Alta: \begin{math}P < 50\% \Longrightarrow F_r = 3\end{math}.\\
@@ -324,7 +325,33 @@ Tempo: \begin{math} x_t = 1	\wedge x_t = 2 \wedge x_t = 3\end{math} influenza il
 Costo: \begin{math} x_c = 1	\wedge x_c = 2 \wedge x_c = 3\end{math} incremento dei costi.\\
 Prestazioni: \begin{math} x_p = 1	\wedge x_p = 2 \wedge x_p = 3\end{math} riduzione della qualità.	\\
 \end{quote}
+Alla fine l'indice di impatto sarà la somma di \(x_0 = x_t + x_c + x_p\) che sarà in un range di \(3\leq x_0\leq9\).
+Una volta quantificati i vari fattori di rischi, calcolata la probabilità e l'impatti si passa alla stesura della matrice dei Rischi:
+La prima parte consiste nella descrizione dei rischi e del livello prima di effettuare le azioni preventive
+\begin{table}[h!]
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+ &  & \multicolumn{3}{l|}{Valutazione Iniziale} \\ \cline{3-5} 
+\multirow{-2}{*}{WBS} & \multirow{-2}{*}{\begin{tabular}[c]{@{}l@{}}Descrizione del Rischio\\ (Causa ed Effetto)\end{tabular}} & {\color[HTML]{000000} Probabilità} & {\color[HTML]{000000} Impatto} & {\color[HTML]{000000} Livello di Rischio} \\ \hline
+ &  &  &  &  \\ \hline
+ &  &  &  &  \\ \hline
+ &  &  &  &  \\ \hline
+\end{tabular}
+\caption{Matrice Pt1}
+\end{table}
 
+La seconda parte invece avrà dei valori di alcuni rischi abbassati in quanto il PM avrà presto le precauzioni necessari da avere un livello di sicurezza sufficiente
+\begin{table}[h!]
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Azioni \\ Preventive\end{tabular}} & \multicolumn{3}{l|}{Valutazione Finale} & \multicolumn{3}{l|}{Risposta al Rischio} \\ \cline{2-7} 
+ & Probabilità & Impatto & \begin{tabular}[c]{@{}l@{}}Livello \\ di Rischio\end{tabular} & \begin{tabular}[c]{@{}l@{}}Condizioni \\ Di Allerta\end{tabular} & \begin{tabular}[c]{@{}l@{}}Azione \\ Correttiva\end{tabular} & Responsabile \\ \hline
+ &  &  &  &  &  &  \\ \hline
+ &  &  &  &  &  &  \\ \hline
+ &  &  &  &  &  &  \\ \hline
+\end{tabular}
+\caption{Matrice pt2}
+\end{table}
 
 
 \end{enumerate}
