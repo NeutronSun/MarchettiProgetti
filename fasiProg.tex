@@ -12,13 +12,36 @@
 \newcommand{\diff}{\mathop{}\!\mathrm{d}}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{imakeidx}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{lscape}
+\bookmarksetup{
+  numbered,
+  open
+}
+\pgfplotsset{width=10cm,compat=1.9}
+\newcommand{\quantities}[1]{%
+  \begin{tabular}{@{}c@{}}\strut#1\strut\end{tabular}%
+}
+
 \makeindex[columns=3, title=Alphabetical Index, intoc]
 
-\title{Fasi di un Progetto2}
+\title{Progetto e PMBOK}
 \author{Lorenzo Sanseverino 5DSA}
-\begin{document}
 
-\section{Introduzione}
+
+
+\begin{document}
+\tableofcontents
+\maketitle
+
+
+
+
+\section{Introduzione alle Fasi di un Progetto}
 Un progetto nasce da una idea/opportunità per arrivare ad un risultato, ponendosi degli obiettivi.
 Ogni obiettivo è raggiungibile mediante sforzi coordinati da parte del gruppo di lavoro seguendo delle fasi.
 Generalmente le fasi si dividono in 4:
@@ -30,6 +53,47 @@ Generalmente le fasi si dividono in 4:
 \item Chiusura	
 \end{enumerate}
 
+Ciò avviene per ottimizzare al massimo la produttività ed limitare al massimo gli sprechi.
+Vi sono nelle varie fasi(sopratutto nella prima) un ampio studio di tutti i vincoli e delle opportunità.
+Il vincolo consiste in qualcosa che rende difficile la realizzazione del progetto.
+Una oppurtunità è soluzione non prevista nel progetto che integrata possa aumentare la qualità dell'ultimo.
+Volendo le varie fasi possono essere viste sottoforma di grafico cartesiano:
+sulla ascissa troviamo il tempo t(mesi/anni, dipende dalla scadenza) e sulle ordinate il costo c(rappresentabile come un ritardo ed uno spreco di soldi).
+Il grafico risultate è il seguente:
+\begin{figure}[h!]
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = left,
+    xlabel = \(t\),
+    ylabel = {\(c(t)\)},
+    xmin=0, xmax=12,
+    ymin=0, ymax=100000,
+]
+\addplot [
+    color=red,
+]
+coordinates {
+    (0,0)(2,0)(4,500)(6,1000)(8,3000)(10,10000)(12,100000)
+    };
+\addlegendentry{Bad Year}
+\\
+\addplot [
+    color=blue,
+]
+coordinates {
+    (0,0)(2,0)(4,500)(6,1000)(8,1500)(10,1700)(12,4000)
+    };
+\addlegendentry{Good Year}
+
+\end{axis}
+\end{tikzpicture}
+\caption{Grafico andamento del Progetto}
+\label{grap1}
+\end{figure}
+
+Come si può vedere la grafico, la linea rossa ha avuto grossi ritardi con un enorme spreco in termini di soldi: ciò è dovuto ad una brutta organizzazione iniziale.
+Invece la linea blu è una sorta di condizione ideale nel caso in cui tutto fosse perfetto(avere dei ritardi e delle perdite durante la realizzazione del progetto è quasi normale, se ovviamente non eccessive)
+
 \section{Concezione, analisi della fattibilità del progetto e tecniche di analisi}
 La concezione di un progetto è la nascita dell'idea e la comprensione della sua fattibilità.
 La concezione può essere divisa in sottoparti:
@@ -40,18 +104,19 @@ Viene in oltre svolta l'\textbf{Analisi Situazione Attuale del Software}, vengon
 Si svolge una \textbf{Analisi della Realtà} in cui un vincolo diviene una opportunità, ossia si crea una situazione nuova e di successo.
 
 Infine si \textbf{Definiscono gli obiettivi del progetto in termini quantitativi sintetici}:
-Per definire gli obiettivi in maniera realistica e concreta, quindi senza andare in contro a perdite di tempo od uscire dai vincoli(vedi Fig \ref{t}) predisposti, ci sono delle tecniche come
+Per definire gli obiettivi in maniera realistica e concreta, quindi senza andare in contro a perdite di tempo od uscire dai vincoli predisposti, ci sono delle tecniche come
 la \textbf{\textcolor{blue}{S.M.A.R.T.}}:
 \begin{itemize}
 	\item \textbf{Specifici:} Deve essere dettagliato ed espresso chiaramente
 	\item \textbf{Misurabili:} Quantificatore che indica la qualità (es. 10\% più grande...).
 	\item \textbf{Accordati:} Deve essere concordato con tutti i membri del progetto.
-	\item \textbf{Realistici:} Deve rispettare i vincoli del progetto (vedi Fig \ref{t}) e le 										capacità dei membri.
+	\item \textbf{Realistici:} Deve rispettare i vincoli del progetto e le 										capacità dei membri.
 	\item \textbf{Temporalmente Definito:} Inserire una data di scandeza/consegna da rispettare.
 \end{itemize}
 Altra tecnica è la \textbf{\textcolor{blue}{S.W.O.T.}}, ossia Strenght, Weakness, Opportunities e Threat.
 Questi punti costruscono una tabella che conterrà i vari punti di forza e debolezza sia dovuti a fattori interni(Strenght e Weakness) sia ad esterni(Opportunities e Threat):
 
+\begin{table}[h!]
 \begin{center}
 \begin{tabular}{ |c|c|c|c| } 
  \hline
@@ -62,6 +127,10 @@ Questi punti costruscono una tabella che conterrà i vari punti di forza e debol
  \hline
 \end{tabular}
 \end{center}
+\caption{Tabella S.W.O.T.}
+\label{swot}
+\end{table}
+
 
 
 
@@ -81,4 +150,99 @@ Essa si dividi in
     \item \textbf{Scelta delle modalità di realizzazione del progetto:} MakeOrBuy, riuso dei componenti esistenti, manutenzioni del sistema,formazione ed assistenza utente.
 \end{itemize}
 
+
+\subsection{Risk BreakDown Structure(RBS)}
+Durante la stesura di un progetto il \textbf{rischio} è un evento/condizione che, nel caso dovesse succedere, avrebbe effetti negativi sul progetto stesso.
+Sono presenti due fattori da tenere in considerazione: La \textbf{Probabilità} che il fenomeno avvenga e l' \textbf{Impatto} dello stesso, con le dovute conseguenze.
+La gestione dei rischi è un processo di \textbf{Prevenzioni} in quanto bisogna evitare ogni possibile rischio, di \textbf{Mitigazione} ossia che bisogna adottare provvedimenti per la riduzione degli effetti indesiderati e di \textbf{Gestione delle conseguenze} predisporre in anticipo precauzioni nel caso il rischio avvenga e adottare provvedimenti per risolverlo.
+Il RBS è una delle 10 aree di conoscenza del PMBOK, sono presenti 6 procedimenti che garantiscono la completa gestione dei rischi:
+\begin{itemize}
+
+ \item \textbf{Pianificazione della Gestione dei Rischi:} (Plan Risk Management)
+ 
+ \item \textbf{Identificazione Dei Rischi}: (Identify Risk)
+ 
+ \item \textbf{Analisi Quantitativa dei Rischi}:(Perform Qualitative Risk Analysis)
+ 
+ \item \textbf{Analisi Quantitativa dei Rischi}:(Perform Quantitative Risk Analysis)
+ 
+ \item \textbf{Pianificazione della Risposta ai Rischi}:(Plan Risk Responses)
+ 
+ \item \textbf{Monitoraggio e Controllo Rischi}:(Control Risks)
+\end{itemize}
+
+Quindi il RBS serve proprio per evitare tutte le situazioni di \textbf{Crisis Managemnt}, ottimizzare i costi previsti con la dovuta gestione dei costi, aumentare le probabilità di successo e promuovere le oppurtunità.
+
+In questa fase le attività del Project Manager sono due:
+\begin{enumerate}
+
+	\item \textbf{Individuare Fattori di Rischio}: Individuare delle aree in cui è possibile che arrivino dei rischi(punti deboli dell'azienda)
+	\item \textbf{La Definizione}: Fornire una documentazione dei vari fattori di rischi, fornirne un livello quantitativo ed il motivo, come rappresentato nella tabella sottostante:
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ 	\hline
+ 	Fattori di rischio & Parametri & Livello \\ [0.5ex] 
+ 	\hline
+ 	Complessità gestionale & 
+ 	Organizzazion personale & 
+ 	\quantities{Ampia azienda\\Alto Rischio} \\
+ 				
+ 	\hline
+ 	Innovazione Tecnologica & 
+ 	\quantities{Utilizzo nuovo hardware,\\aggionrare apparecchiature} & 
+ 	\quantities{Apparecchiature recenti,\\personale esperto\\Basso rischio} \\
+ 				\hline
+ 				
+\end{tabular}
+\end{center}
+\caption{Tabella dei Rischi}
+\label{trischi}
+\end{table}
+
+Una volta stipulata la tabella di rischio si passa alla stesura della matrice di probabilità di impatto.\\
+Date come variabili: \(F_r = probability'\) e \(x_0 = impact\) l'indice di probabilità \(F_r\) rappresenta la probabilità di accadimento di un evento suddiviso in:
+\begin{quote}
+\(P = indexProbability\) in percentuale.\\
+Bassa: \begin{math}P < 20\% \Longrightarrow F_r = 1\end{math}.\\
+Media: \begin{math} 20 \leq P \leq 50\% \Longrightarrow F_r = 2\end{math}.\\
+Alta: \begin{math}P < 50\% \Longrightarrow F_r = 3\end{math}.\\
+\end{quote}
+
+Il nostro indice d'impatto \(x_0\) viene calcolato in base al contesto:
+\begin{quote}
+Tempo: \begin{math} x_t = 1	\wedge x_t = 2 \wedge x_t = 3\end{math} influenza il tempo richiesto.\\
+Costo: \begin{math} x_c = 1	\wedge x_c = 2 \wedge x_c = 3\end{math} incremento dei costi.\\
+Prestazioni: \begin{math} x_p = 1	\wedge x_p = 2 \wedge x_p = 3\end{math} riduzione della qualità.	\\
+\end{quote}
+Alla fine l'indice di impatto sarà la somma di \(x_0 = x_t + x_c + x_p\) che sarà in un range di \(3\leq x_0\leq9\).
+Una volta quantificati i vari fattori di rischi, calcolata la probabilità e l'impatti si passa alla stesura della matrice dei Rischi:
+La prima parte consiste nella descrizione dei rischi e del livello prima di effettuare le azioni preventive
+\begin{table}[h!]
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+ &  & \multicolumn{3}{l|}{Valutazione Iniziale} \\ \cline{3-5} 
+\multirow{-2}{*}{WBS} & \multirow{-2}{*}{\begin{tabular}[c]{@{}l@{}}Descrizione del Rischio\\ (Causa ed Effetto)\end{tabular}} & {\color[HTML]{000000} Probabilità} & {\color[HTML]{000000} Impatto} & {\color[HTML]{000000} Livello di Rischio} \\ \hline
+ &  &  &  &  \\ \hline
+ &  &  &  &  \\ \hline
+ &  &  &  &  \\ \hline
+\end{tabular}
+\caption{Matrice Pt1}
+\end{table}
+
+La seconda parte invece avrà dei valori di alcuni rischi abbassati in quanto il PM avrà presto le precauzioni necessari da avere un livello di sicurezza sufficiente
+\begin{table}[h!]
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Azioni \\ Preventive\end{tabular}} & \multicolumn{3}{l|}{Valutazione Finale} & \multicolumn{3}{l|}{Risposta al Rischio} \\ \cline{2-7} 
+ & Probabilità & Impatto & \begin{tabular}[c]{@{}l@{}}Livello \\ di Rischio\end{tabular} & \begin{tabular}[c]{@{}l@{}}Condizioni \\ Di Allerta\end{tabular} & \begin{tabular}[c]{@{}l@{}}Azione \\ Correttiva\end{tabular} & Responsabile \\ \hline
+ &  &  &  &  &  &  \\ \hline
+ &  &  &  &  &  &  \\ \hline
+ &  &  &  &  &  &  \\ \hline
+\end{tabular}
+\caption{Matrice pt2}
+\end{table}
+
+
+\end{enumerate}
 \end{document}

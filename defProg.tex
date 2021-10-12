@@ -12,20 +12,36 @@
 \newcommand{\diff}{\mathop{}\!\mathrm{d}}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{imakeidx}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{lscape}
+\bookmarksetup{
+  numbered,
+  open
+}
+\pgfplotsset{width=10cm,compat=1.9}
+\newcommand{\quantities}[1]{%
+  \begin{tabular}{@{}c@{}}\strut#1\strut\end{tabular}%
+}
+
 \makeindex[columns=3, title=Alphabetical Index, intoc]
 
 \title{Progetto e PMBOK}
 \author{Lorenzo Sanseverino 5DSA}
 
+
+
 \begin{document}
+\tableofcontents
 \maketitle
 
 
-
-\tableofcontents
 \section{Definizione Di Progetto}
 
-In ambito lavorativo ed aziendale un progetto è uno sforzo \textcolor{red}{temporaneo} intrapreso con lo scopo di crearea un \textcolor{red}{prodotto/servizio} unico e di qualità. \index{section}
+In ambito lavorativo ed aziendale un progetto è uno sforzo \textcolor{red}{temporaneo} intrapreso con lo scopo di crearea un \textcolor{red}{prodotto/servizio} unico e di qualità. 
 
 \subsection{Elemetti di un progetto e triangolo dal triplice vincolo}
 In un progetto è solito trovare quattro elemetti in comune, su cui si baserà tutto lo sviluppo dello stesso, essi sono:
@@ -131,18 +147,5 @@ In una azienda, a gestire l'organizzazione e lo sviluppo di un progetto, è poss
 Una figura in comune per il Project Management è sicuramente quella del \textbf{Project Management}.
 È la figura più importante, definito anche regista del progetto, lui non si preoccupa delle competenze tecniche ma di supervisione e coordinare tutti i membri del gruppo.
 Si occupa di individuare la struttura di un progetto e di avviarla rispettando i vincoli (vedi Fig \ref{t}), deve organizzare un sistema di monitoraggio, una documentazione e cosa più importante prendere decisione sul \textbf{Make Or Buy}.
-
-
-\section{Fasi di un Progetto}
-Un progetto nasce da una idea/opportunità per arrivare ad un risultato, ponendosi degli obiettivi.
-Ogni obiettivo è raggiungibile mediante sforzi coordinati da parte del gruppo di lavoro seguendo delle fasi.
-Generalmente le fasi si dividono in 4:
-
-\begin{enumerate}
-\item Concezione
-\item Definizione
-\item Realizzazione
-\item Chiusura	
-\end{enumerate}
 
 \end{document}
