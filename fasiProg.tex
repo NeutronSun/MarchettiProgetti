@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass{report}
 
 \usepackage[english]{babel}
 
@@ -16,6 +16,7 @@
 \usepackage{hyperref}
 \usepackage{bookmark}
 \usepackage{booktabs}
+\usepackage{pgfgantt}
 \usepackage{multirow}
 \usepackage{lscape}
 \bookmarksetup{
@@ -27,19 +28,18 @@
   \begin{tabular}{@{}c@{}}\strut#1\strut\end{tabular}%
 }
 
+
+
 \makeindex[columns=3, title=Alphabetical Index, intoc]
 
 \title{Progetto e PMBOK}
 \author{Lorenzo Sanseverino 5DSA}
-
+\renewcommand*{\thesection}{\arabic{section}}
 
 
 \begin{document}
 \tableofcontents
 \maketitle
-
-
-
 
 \section{Introduzione alle Fasi di un Progetto}
 Un progetto nasce da una idea/opportunità per arrivare ad un risultato, ponendosi degli obiettivi.
@@ -58,8 +58,8 @@ Vi sono nelle varie fasi(sopratutto nella prima) un ampio studio di tutti i vinc
 Il vincolo consiste in qualcosa che rende difficile la realizzazione del progetto.
 Una oppurtunità è soluzione non prevista nel progetto che integrata possa aumentare la qualità dell'ultimo.
 Volendo le varie fasi possono essere viste sottoforma di grafico cartesiano:
-sulla ascissa troviamo il tempo t(mesi/anni, dipende dalla scadenza) e sulle ordinate il costo c(rappresentabile come un ritardo ed uno spreco di soldi).
-Il grafico risultate è il seguente:
+sulla ascissa troviamo il tempo \(t\)(mesi/anni, dipende dalla scadenza) e sulle ordinate il costo \(c\)(rappresentabile come un ritardo ed uno spreco di soldi).
+Il grafico risultante è il seguente:
 \begin{figure}[h!]
 \begin{tikzpicture}
 \begin{axis}[
@@ -99,8 +99,8 @@ La concezione di un progetto è la nascita dell'idea e la comprensione della sua
 La concezione può essere divisa in sottoparti:
 
 \subsection{Analisi Situazione Attuale}
-Si descrive il contesto(\textcolor{blue}{dominio del software}) applicativo del progetto descrivendo le esigenze degli utenti sia interni che esterni.
-Viene in oltre svolta l'\textbf{Analisi Situazione Attuale del Software}, vengono \textbf{Identificare i Vincoli di Origine Ambientale} quindi bisogna tenere conto di tutti i vincoli ambientali, normativi, temporali ed economici e chiedere consigli ad esperti del mestiere(notai, ambientalisti,investiri).
+Si descrive il contesto(\textcolor{blue}{dominio del software}) applicativo del progetto descrivendo le esigenze degli utenti sia interni che esterni.\\
+Vengono \textbf{Identificare i Vincoli di Origine Ambientale} quindi bisogna tenere conto di tutti i vincoli ambientali, normativi, temporali ed economici e chiedere consigli ad esperti del mestiere(notai, ambientalisti,investiri).
 Si svolge una \textbf{Analisi della Realtà} in cui un vincolo diviene una opportunità, ossia si crea una situazione nuova e di successo.
 
 Infine si \textbf{Definiscono gli obiettivi del progetto in termini quantitativi sintetici}:
@@ -110,7 +110,7 @@ la \textbf{\textcolor{blue}{S.M.A.R.T.}}:
 	\item \textbf{Specifici:} Deve essere dettagliato ed espresso chiaramente
 	\item \textbf{Misurabili:} Quantificatore che indica la qualità (es. 10\% più grande...).
 	\item \textbf{Accordati:} Deve essere concordato con tutti i membri del progetto.
-	\item \textbf{Realistici:} Deve rispettare i vincoli del progetto e le 										capacità dei membri.
+	\item \textbf{Realistici:} Deve rispettare i vincoli del progetto (vedi Fig \ref{t}) e le 										capacità dei membri.
 	\item \textbf{Temporalmente Definito:} Inserire una data di scandeza/consegna da rispettare.
 \end{itemize}
 Altra tecnica è la \textbf{\textcolor{blue}{S.W.O.T.}}, ossia Strenght, Weakness, Opportunities e Threat.
@@ -135,18 +135,20 @@ Questi punti costruscono una tabella che conterrà i vari punti di forza e debol
 
 
 \subsection{Definizione di Massima del progetto:}
-Essa si dividi in
+Consiste nel definire i requisiti del progetto che devono essere soddisfatti ed è compito del PM.
+Viene divisa in:
 \begin{itemize}
     \item \textbf{Definizione dei requisiti:} Sono le condizioni che il sistema deve rispettare. 		Compito del progettista elaboare una proposta di soluzione con lo scopo di
     \begin{enumerate}
         \item Identificare come deve fare il sistema informativo per rispondere alle esigenze della gente(\textbf{Requisiti funzionali}).
         \item Precisare i confini dell'applicazione e le modalità di iterazione con l'ambiente(\textbf{Requisiti di interfaccia}).
-        \item .
+        \item Trasformare il quadro dei vincoli d’uso nei requisiti non funzionali.
         \item Definire l'elenco dei requisiti
         \item Elaborare le contradizione tra requisiti
         \item Identificare e mantenere il tracciamento tra requisiti utente e requisiti software.
     \end{enumerate}
-    \item \textbf{Definire in linea di massima le specifiche del sistema:} architettura dei dati, architettura applicativa ed interfaccia utente.
+    
+    \item \textbf{Definire in linea di massima le specifiche del sistema:} architettura dei dati(database e DBMS), architettura applicativa ed interfaccia utente. 
     \item \textbf{Scelta delle modalità di realizzazione del progetto:} MakeOrBuy, riuso dei componenti esistenti, manutenzioni del sistema,formazione ed assistenza utente.
 \end{itemize}
 
